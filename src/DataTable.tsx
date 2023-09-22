@@ -1,13 +1,4 @@
-import {
-  FolderRegular,
-  EditRegular,
-  OpenRegular,
-  DocumentRegular,
-  PeopleRegular,
-  DocumentPdfRegular,
-  VideoRegular,
-  DeleteRegular,
-} from '@fluentui/react-icons';
+import { EditRegular, DeleteRegular } from '@fluentui/react-icons';
 import {
   TableBody,
   TableCell,
@@ -25,47 +16,43 @@ import {
 
 const items = [
   {
-    file: { label: 'Meeting notes', icon: <DocumentRegular /> },
-    author: { label: 'Max Mustermann', status: 'available' },
-    lastUpdated: { label: '7h ago', timestamp: 1 },
+    name: { label: 'Meeting notes' },
+    description: { label: 'Max Mustermann', status: 'available' },
+    tags: { label: '7h ago', timestamp: 1 },
     lastUpdate: {
       label: 'You edited this',
-      icon: <EditRegular />,
     },
   },
   {
-    file: { label: 'Thursday presentation', icon: <FolderRegular /> },
-    author: { label: 'Erika Mustermann', status: 'busy' },
-    lastUpdated: { label: 'Yesterday at 1:45 PM', timestamp: 2 },
+    name: { label: 'Thursday presentation' },
+    description: { label: 'Erika Mustermann', status: 'busy' },
+    tags: { label: 'Yesterday at 1:45 PM', timestamp: 2 },
     lastUpdate: {
       label: 'You recently opened this',
-      icon: <OpenRegular />,
     },
   },
   {
-    file: { label: 'Training recording', icon: <VideoRegular /> },
-    author: { label: 'John Doe', status: 'away' },
-    lastUpdated: { label: 'Yesterday at 1:45 PM', timestamp: 2 },
+    name: { label: 'Training recording' },
+    description: { label: 'John Doe', status: 'away' },
+    tags: { label: 'Yesterday at 1:45 PM', timestamp: 2 },
     lastUpdate: {
       label: 'You recently opened this',
-      icon: <OpenRegular />,
     },
   },
   {
-    file: { label: 'Purchase order', icon: <DocumentPdfRegular /> },
-    author: { label: 'Jane Doe', status: 'offline' },
-    lastUpdated: { label: 'Tue at 9:30 AM', timestamp: 3 },
+    name: { label: 'Purchase order' },
+    description: { label: 'Jane Doe', status: 'offline' },
+    tags: { label: 'Tue at 9:30 AM', timestamp: 3 },
     lastUpdate: {
       label: 'You shared this in a Teams chat',
-      icon: <PeopleRegular />,
     },
   },
 ];
 
 const columns = [
-  { columnKey: 'file', label: 'File' },
-  { columnKey: 'author', label: 'Author' },
-  { columnKey: 'lastUpdated', label: 'Last updated' },
+  { columnKey: 'name', label: 'Name' },
+  { columnKey: 'description', label: 'Description' },
+  { columnKey: 'tags', label: 'Last updated' },
   { columnKey: 'actions', label: 'Actions' },
 ];
 
@@ -93,29 +80,27 @@ export const DataTable = () => {
       </TableHeader>
       <TableBody>
         {items.map((item) => (
-          <TableRow key={item.file.label}>
+          <TableRow key={item.name.label}>
             <TableCell tabIndex={0} role="gridcell">
-              <TableCellLayout media={item.file.icon}>
-                {item.file.label}
-              </TableCellLayout>
+              <TableCellLayout>{item.name.label}</TableCellLayout>
             </TableCell>
             <TableCell tabIndex={0} role="gridcell">
               <TableCellLayout
                 media={
                   <Avatar
-                    aria-label={item.author.label}
-                    name={item.author.label}
+                    aria-label={item.description.label}
+                    name={item.description.label}
                     badge={{
-                      status: item.author.status as PresenceBadgeStatus,
+                      status: item.description.status as PresenceBadgeStatus,
                     }}
                   />
                 }
               >
-                {item.author.label}
+                {item.description.label}
               </TableCellLayout>
             </TableCell>
             <TableCell tabIndex={0} role="gridcell">
-              {item.lastUpdated.label}
+              {item.tags.label}
             </TableCell>
             <TableCell role="gridcell" tabIndex={0} {...focusableGroupAttr}>
               <TableCellLayout>
